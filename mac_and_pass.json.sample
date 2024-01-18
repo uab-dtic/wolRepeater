@@ -1,0 +1,14 @@
+[
+    {
+        "ethernet": "aabbccddeeff",
+        "password": "6f5e4d3c2b1a"
+    },
+    {
+        "ethernet": "112233445566",
+        "password": "6f5e4d3c2b1a"
+    },
+    {
+        "ethernet": "7446a0a8c2c3",
+        "password": "112233445566"
+    }
+]

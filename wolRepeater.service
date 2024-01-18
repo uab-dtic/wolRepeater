@@ -1,0 +1,22 @@
+[Unit]
+Description=wolRepeater service
+Wants=network-online.target
+After=network.target network-online.target
+
+StartLimitIntervalSec=500
+StartLimitBurst=5
+
+[Service]
+Restart=on-failure
+RestartSec=5s
+
+Type=simple
+
+User=wolrepeater
+
+WorkingDirectory=/opt/wolRepeater
+EnvironmentFile=-/opt/wolRepeater/wolRepeater.conf
+ExecStart=/opt/wolRepeater/env/bin/python3  /opt/wolRepeater/wolRepeater.py $OPTIONS
+
+[Install]
+WantedBy=multi-user.target

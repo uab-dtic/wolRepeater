@@ -1,0 +1,17 @@
+# 
+
+# Options wolRepeater.py -h 
+# ----------------------
+# ./wolRepeater.py [-h] [-i ip] [-p port] [-t ip] [-r port] [-s password] [-z password] [-f mac_and_passwd_json_file] [-l log file]
+#
+#   -h show this help.
+#   -i binding ip. Default 0.0.0.0.
+#   -p binding port. Default 5009.
+#   -t target ip. Default 255.255.255.255.
+#   -r target port. Default 9.
+#   -f json file with mac's and passwords. View format down.
+#   -s password for use on forward packet. Default ''.
+#   -z password to test on received packets. Default ''.
+#
+
+OPTIONS="-v DEBUG -l /var/log/wolRepeater.log"
