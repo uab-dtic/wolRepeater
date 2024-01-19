@@ -78,6 +78,7 @@ usuario@localhost:~ # /opt/wolRepeater/env/bin/python /opt/wolRepeater/wolRepera
 
 ## Opciones de uso
 
+```bash
 ./wolRepeater.py [-h] [-i ip] [-p port] [-t ip] [-r port] [-s password] [-z password] [-f mac_and_passwd_json_file] [-l log file]
 
    -h show this help.
@@ -85,18 +86,19 @@ usuario@localhost:~ # /opt/wolRepeater/env/bin/python /opt/wolRepeater/wolRepera
    -p binding port. Default 5009.
    -t target ip. Default 255.255.255.255.
    -r target port. Default 9.
-   -f json file with mac's and passwords. View format down.
-   -s password for use on forward packet. Default ''.
-   -z password to test on received packets. Default ''.
+   -f json file with mac\'s and passwords for SecureOn. View format down.
+   -s password for use on forward packet with SecureOn. Default ''.
+   -z password to check on received packets with SecureOn. Default ''.
+   -l file log
+   -v LOGLEVEL
+
 
 Formato del fichero json
 
-```json
 [
   { "ethernet": "112233445566", "password": "aabbccddeeff",
   { "ethernet": "aa2233445566", "password": "11bbccddeeff"  
 ]
-```
 
 Environment Variables:
    LOGLEVEL=[DEBUG|INFO|WARNING|ERROR|CRITICAL] default=INFO
