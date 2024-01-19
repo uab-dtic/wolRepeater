@@ -40,7 +40,7 @@ Creamos el entorno virtual
 
 ```bash
 cd /opt/wolrepeater
-python -m venv env
+python3 -m venv env
 . env/bin/activate
 ```
 
@@ -128,12 +128,26 @@ sudo ln -s /opt/wolRepeater/wolRepeater.service /etc/systemd/system/wolRepeater.
 el servicio se arrancará con el usuario wolrepeater que debemos crear
 
 ```bash
-sudo adduser --system --no-create-home --home /opt/wolrepeater --shell /usr/sbin/nologin wolrepeater
+sudo adduser --system --no-create-home --home /opt/wolRepeater --shell /usr/sbin/nologin wolrepeater
 ```
 
 Modificar el fichero **/opt/wolRepeater/wolRepeater.conf** con las opciones apropiadas
 
-***OJO!!!** si se usa la opcion -l para generar un fichero de log en /var/log/wolRepeater.log, este fichero **DEBE** ser propiedad del usuario que arranca el servicio (_wolrepeater_)
+```bash
+sudo cp /opt/wolRepeater/wolRepeater.conf.sample /opt/wolRepeater/wolRepeater.conf
+
+sudo vi /opt/wolRepeater/wolRepeater.conf
+```
+
+**OJO !!!** si este demonio se usa en un router (host con varias interfaces/ip's) seria conveniente solo arrancarlo con la **ip de la interfaz _externa_** ya que es la que puede recibir los paquetes de WoL.
+
+```data
+
+... -i 192.168.100.1
+
+```
+
+**OJO !!!** si se usa la opcion -l para generar un fichero de log en /var/log/wolRepeater.log, este fichero **DEBE** ser propiedad del usuario que arranca el servicio (_wolrepeater_)
 
 ```bash
 sudo touch /var/log/wolRepeater.log
@@ -181,6 +195,10 @@ Por ejemplo podemos añadir el siguiente **/etc/logrotate.d/wolRepeater**
     endscript
 }
 ```
+
+## Cortafuegos
+
+Este demonio recibe los paquetes de WoL por el puerto 5009/UDP (por defecto) hay que tenerlo en cuenta
 
 ## Daisy Chain use
 

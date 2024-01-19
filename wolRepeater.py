@@ -15,7 +15,7 @@ DGRAM_REGEX = re.compile(r'(?:^([fF]{12})(([0-9a-fA-F]{12}){16})([0-9a-fA-F]{12}
 ETHER_REGEX = re.compile( r'^[0-9a-fA-F]{12}$')
 
 BIND_ADDRESS = "0.0.0.0"
-BIND_PORT = 9999
+BIND_PORT = 5009
 
 TARGET_ADDRESS = "255.255.255.255"
 TARGET_PORT = 9
@@ -58,13 +58,16 @@ def handle_packet(data):
         password = search.group(4)
 
         if is_allowed(address, password):
-            logger.debug("Forwarding the packet for %s to %s:%s" % (address, TARGET_ADDRESS, TARGET_PORT))
+            
             if ( FORWARD_PASS != "" ):
                 newPayload = search.group(1) + search.group(2) + FORWARD_PASS
                 logger.debug( "New payload     : {}".format(payload) )
                 data = binascii.unhexlify( newPayload )
             #
+            logger.info("Forwarding the packet for %s to %s:%s" % (address, TARGET_ADDRESS, TARGET_PORT))
+
             forward_packet(data)
+            
         else:
             logger.debug("This request has been denied because the received password is not correct")
     else:
